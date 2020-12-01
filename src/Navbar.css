@@ -49,7 +49,7 @@
   margin-top: -3px;
 }
 
-.MuiSelect-select {
+.MuiSelect-select.MuiSelect-select {
   padding-left: 8px;
 }
 
