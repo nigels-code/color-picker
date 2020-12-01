@@ -48,3 +48,12 @@
   /* margin-left: 7px; */
   margin-top: -3px;
 }
+
+.MuiSelect-select {
+  padding-left: 8px;
+}
+
+.select-container {
+  margin-left: auto;
+  margin-right: 1rem;
+}
