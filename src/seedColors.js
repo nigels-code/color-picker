@@ -242,5 +242,4 @@ const seedColors = [
     ]
   }
 ];
-
 export default seedColors;

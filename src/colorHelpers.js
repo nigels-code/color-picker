@@ -28,14 +28,11 @@ function generatePalette(starterPalette) {
   }
   return newPalette;
 }
-
 function getRange(hexColor) {
   const end = "#fff";
   return [chroma(hexColor).darken(1.4).hex(), hexColor, end];
 }
-
 function generateScale(hexColor, numberOfColors) {
   return chroma.scale(getRange(hexColor)).mode("lab").colors(numberOfColors);
 }
-
 export { generatePalette };
