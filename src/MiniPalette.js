@@ -50,7 +50,7 @@ function MiniPalette(props) {
     <div
       className={classes.miniColor}
       style={{ backgroundColor: color.color }}
-      key={color.id}
+      key={color.name}
     />
   ));
   return (
