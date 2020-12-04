@@ -29,6 +29,7 @@ class Palette extends Component {
         paletteId={id}
         moreUrl={`/palette/${id}/${color.id}`}
         showLink
+        showingFullPalette
       />
     ));
     return (
@@ -37,7 +38,6 @@ class Palette extends Component {
           level={level}
           changeLevel={this.changeLevel}
           handleFormatChange={this.changeFormat}
-          showingAllColors
         />
         <div className='Palette-colors'>{colorBoxes}</div>
         <PaletteFooter paletteName={paletteName} emoji={emoji} />
