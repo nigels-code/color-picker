@@ -27,7 +27,6 @@
   text-transform: uppercase;
   border: none;
   text-decoration: none;
-  /* cursor: pointer; */
 }
 
 .copy-button {
@@ -49,6 +48,14 @@
   letter-spacing: 1px;
   text-transform: uppercase;
   font-size: 12px;
+}
+
+.light-text {
+  color: white;
+}
+
+.ColorBox .dark-text {
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .see-more {
@@ -95,6 +102,7 @@
   transform: scale(0.1);
   opacity: 0;
   color: white;
+  z-index: -10;
 }
 
 .copy-msg.show {
