@@ -41,12 +41,12 @@ class ColorBox extends Component {
             <h1>copied</h1>
             <p className={classes.copyText}>{this.props.background}</p>
           </div>
-          <div>
-            <div className={classes.boxContent}>
-              <span className={classes.colorName}>{name}</span>
-            </div>
-            <button className={classes.copyButton}>Copy</button>
+          {/* <div> */}
+          <div className={classes.boxContent}>
+            <span className={classes.colorName}>{name}</span>
           </div>
+          <button className={classes.copyButton}>Copy</button>
+          {/* </div> */}
           {showingFullPalette && (
             <Link to={moreUrl} onClick={(evt) => evt.stopPropagation()}>
               <span className={classes.seeMore}>More</span>
