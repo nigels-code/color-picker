@@ -1,4 +1,4 @@
-# React Colors Project
+# Color Picker
 
 - I wrote this while following Colt Steele's "Modern React Bootcamp" course.
 
