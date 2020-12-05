@@ -1,4 +1,4 @@
-export default {
+const styles = {
   Palette: {
     height: "100vh",
     overflowX: "hidden",
@@ -39,3 +39,4 @@ export default {
     }
   }
 };
+export default styles;
