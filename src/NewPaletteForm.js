@@ -87,15 +87,12 @@ function NewPaletteForm(props) {
   const handleDrawerOpen = () => {
     setOpen(true);
   };
-
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
   const handleChangeColor = (newColor) => {
     setCurrentColor(newColor.hex);
   };
-
   const addNewColor = () => {
     const newColor = {
       color: currentColor,
@@ -104,15 +101,12 @@ function NewPaletteForm(props) {
     setColors([...colors, newColor]);
     setNewColorName("");
   };
-
   const handleNewColorName = (evt) => {
     setNewColorName(evt.target.value);
   };
-
   const handleNewPaletteName = (evt) => {
     setNewPaletteName({ [evt.target.name]: evt.target.value });
   };
-
   const savePalette = () => {
     const newPalette = {
       id: newPaletteName.newPaletteName.toLowerCase().replace(/ /g, "-"),
@@ -122,7 +116,9 @@ function NewPaletteForm(props) {
     props.savePalette(newPalette);
     props.history.push("/");
   };
-
+  const removeColor = (colorName) => {
+    setColors(colors.filter((color) => color.name !== colorName));
+  };
   useEffect(() => {
     ValidatorForm.addValidationRule("isColorNameUnique", (value) =>
       colors.every(({ name }) => name.toLowerCase() !== value.toLowerCase())
@@ -232,7 +228,12 @@ function NewPaletteForm(props) {
       >
         <div className={classes.drawerHeader} />
         {colors.map((color) => (
-          <DraggableColorBox color={color.color} name={color.name} />
+          <DraggableColorBox
+            key={color.name}
+            color={color.color}
+            name={color.name}
+            handleDelete={() => removeColor(color.name)}
+          />
         ))}
       </main>
     </div>
