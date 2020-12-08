@@ -12,9 +12,10 @@ import Button from "@material-ui/core/Button";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { withStyles } from "@material-ui/styles";
-import DraggableColorBox from "./DraggableColorBox";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { ChromePicker } from "react-color";
+import DraggableColorList from "./DraggableColorList";
+import arrayMove from "array-move";
 
 const drawerWidth = 400;
 
@@ -105,12 +106,12 @@ function NewPaletteForm(props) {
     setNewColorName(evt.target.value);
   };
   const handleNewPaletteName = (evt) => {
-    setNewPaletteName({ [evt.target.name]: evt.target.value });
+    setNewPaletteName(evt.target.value);
   };
   const savePalette = () => {
     const newPalette = {
-      id: newPaletteName.newPaletteName.toLowerCase().replace(/ /g, "-"),
-      paletteName: newPaletteName.newPaletteName,
+      id: newPaletteName.toLowerCase().replace(/ /g, "-"),
+      paletteName: newPaletteName,
       colors: colors
     };
     props.savePalette(newPalette);
@@ -132,6 +133,9 @@ function NewPaletteForm(props) {
       )
     );
   });
+  const onSortEnd = ({ oldIndex, newIndex }) => {
+    setColors(() => arrayMove(colors, oldIndex, newIndex));
+  };
 
   return (
     <div className={classes.root}>
@@ -159,8 +163,8 @@ function NewPaletteForm(props) {
           <ValidatorForm onSubmit={savePalette}>
             <TextValidator
               label='Palette Name'
-              value={newPaletteName.newPaletteName}
-              name='newPaletteName'
+              value={newPaletteName}
+              name='paletteName'
               onChange={handleNewPaletteName}
               validators={["required", "isPaletteNameUnique"]}
               errorMessages={["Enter Palette Name", "Name already used"]}
@@ -227,14 +231,12 @@ function NewPaletteForm(props) {
         })}
       >
         <div className={classes.drawerHeader} />
-        {colors.map((color) => (
-          <DraggableColorBox
-            key={color.name}
-            color={color.color}
-            name={color.name}
-            handleDelete={() => removeColor(color.name)}
-          />
-        ))}
+        <DraggableColorList
+          colors={colors}
+          removeColor={removeColor}
+          axis='xy'
+          onSortEnd={onSortEnd}
+        />
       </main>
     </div>
   );
