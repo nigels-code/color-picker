@@ -25,7 +25,7 @@ class Navbar extends Component {
     this.setState({ open: false });
   }
   render() {
-    const { level, changeLevel, showingAllColors, classes } = this.props;
+    const { shade, changeShade, showingAllColors, classes } = this.props;
     const { format } = this.state;
     return (
       <header className={classes.Navbar}>
@@ -34,14 +34,14 @@ class Navbar extends Component {
         </div>
         {showingAllColors && (
           <div>
-            <span>Level: {level}</span>
+            <span>Shade: {shade}</span>
             <div className={classes.slider}>
               <Slider
-                defaultValue={level}
+                defaultValue={shade}
                 min={100}
                 max={900}
                 step={100}
-                onChange={changeLevel}
+                onChange={changeShade}
               />
             </div>
           </div>

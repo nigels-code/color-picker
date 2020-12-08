@@ -76,7 +76,7 @@ const styles = makeStyles((theme) => ({
   }
 }));
 
-function NewPaletteForm() {
+function NewPaletteForm(props) {
   const classes = styles();
   // const theme = useTheme();
   const [open, setOpen] = useState(false);
@@ -109,6 +109,17 @@ function NewPaletteForm() {
     setNewName(evt.target.value);
   };
 
+  const savePalette = () => {
+    let newName = "test1";
+    const newPalette = {
+      id: newName.toLowerCase().replace(/ /g, "-"),
+      paletteName: newName,
+      colors: colors
+    };
+    props.savePalette(newPalette);
+    props.history.push("/");
+  };
+
   useEffect(() => {
     ValidatorForm.addValidationRule("isColorNameUnique", (value) =>
       colors.every(({ name }) => name.toLowerCase() !== value.toLowerCase())
@@ -116,7 +127,6 @@ function NewPaletteForm() {
     ValidatorForm.addValidationRule("isColorUnique", (value) =>
       colors.every(({ color }) => color !== currentColor)
     );
-    console.log(currentColor);
   });
 
   return (
@@ -124,6 +134,7 @@ function NewPaletteForm() {
       <CssBaseline />
       <AppBar
         position='fixed'
+        color='default'
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open
         })}
@@ -141,6 +152,9 @@ function NewPaletteForm() {
           <Typography variant='h6' noWrap>
             Persistent drawer
           </Typography>
+          <Button variant='contained' color='primary' onClick={savePalette}>
+            Save Palette
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer

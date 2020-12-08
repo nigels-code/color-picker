@@ -8,12 +8,12 @@ import PaletteFooter from "./PaletteFooter";
 class Palette extends Component {
   constructor(props) {
     super(props);
-    this.state = { level: 500, format: "hex" };
-    this.changeLevel = this.changeLevel.bind(this);
+    this.state = { shade: 500, format: "hex" };
+    this.changeShade = this.changeShade.bind(this);
     this.changeFormat = this.changeFormat.bind(this);
   }
-  changeLevel(level) {
-    this.setState({ level });
+  changeShade(shade) {
+    this.setState({ shade });
   }
   changeFormat(format) {
     this.setState({ format });
@@ -21,8 +21,8 @@ class Palette extends Component {
   render() {
     const { colors, paletteName, emoji, id } = this.props.palette;
     const { classes } = this.props;
-    const { level, format } = this.state;
-    const colorBoxes = colors[level].map((color) => (
+    const { shade, format } = this.state;
+    const colorBoxes = colors[shade].map((color) => (
       <ColorBox
         background={color[format]}
         name={color.name}
@@ -37,8 +37,8 @@ class Palette extends Component {
     return (
       <div className={classes.Palette}>
         <Navbar
-          level={level}
-          changeLevel={this.changeLevel}
+          shade={shade}
+          changeShade={this.changeShade}
           handleFormatChange={this.changeFormat}
           showingAllColors
         />
