@@ -78,13 +78,17 @@ const styles = makeStyles((theme) => ({
 }));
 
 function NewPaletteForm(props) {
+  const defaultProps = {
+    maxColors: 20
+  };
   const classes = styles();
   // const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [currentColor, setCurrentColor] = useState("red");
   const [newColorName, setNewColorName] = useState("");
-  const [colors, setColors] = useState([{ color: "blue", name: "blue" }]);
+  const [colors, setColors] = useState(props.palettes[0].colors);
   const [newPaletteName, setNewPaletteName] = useState("");
+  const paletteIsFull = colors.length >= defaultProps.maxColors;
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -101,6 +105,20 @@ function NewPaletteForm(props) {
     };
     setColors([...colors, newColor]);
     setNewColorName("");
+  };
+  const isColorUnique = (newColor) => {
+    return colors.every(({ color }) => color !== newColor);
+  };
+  const addRandomColor = () => {
+    const allColors = props.palettes.map((p) => p.colors).flat();
+    let rnd = Math.floor(Math.random() * allColors.length);
+    let rndColor = allColors[rnd];
+    while (!isColorUnique(rndColor.color)) {
+      rnd = Math.floor(Math.random() * allColors.length);
+      rndColor = allColors[rnd];
+    }
+    setCurrentColor(rndColor.color);
+    setColors([...colors, rndColor]);
   };
   const handleNewColorName = (evt) => {
     setNewColorName(evt.target.value);
@@ -120,12 +138,15 @@ function NewPaletteForm(props) {
   const removeColor = (colorName) => {
     setColors(colors.filter((color) => color.name !== colorName));
   };
+  const clearColors = () => {
+    setColors([]);
+  };
   useEffect(() => {
     ValidatorForm.addValidationRule("isColorNameUnique", (value) =>
       colors.every(({ name }) => name.toLowerCase() !== value.toLowerCase())
     );
     ValidatorForm.addValidationRule("isColorUnique", (value) =>
-      colors.every(({ color }) => color !== currentColor)
+      isColorUnique(currentColor)
     );
     ValidatorForm.addValidationRule("isPaletteNameUnique", (value) =>
       props.palettes.every(
@@ -192,10 +213,15 @@ function NewPaletteForm(props) {
         <Divider />
         <Typography variant='h4'>Design Your Palette</Typography>
         <div>
-          <Button variant='contained' color='secondary'>
+          <Button variant='contained' color='secondary' onClick={clearColors}>
             Clear Palette
           </Button>
-          <Button variant='contained' color='primary'>
+          <Button
+            variant='contained'
+            color='primary'
+            onClick={addRandomColor}
+            disabled={paletteIsFull}
+          >
             Random Color
           </Button>
         </div>
@@ -219,9 +245,10 @@ function NewPaletteForm(props) {
             variant='contained'
             type='submit'
             color='primary'
-            style={{ backgroundColor: currentColor }}
+            disabled={paletteIsFull}
+            style={{ backgroundColor: paletteIsFull ? "grey" : currentColor }}
           >
-            Add Color
+            {paletteIsFull ? "Palette Full" : "Add Color"}
           </Button>
         </ValidatorForm>
       </Drawer>
@@ -241,4 +268,5 @@ function NewPaletteForm(props) {
     </div>
   );
 }
+
 export default withStyles(styles, { withTheme: true })(NewPaletteForm);
