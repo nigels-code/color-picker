@@ -56,8 +56,9 @@ const styles = makeStyles((theme) => ({
 function PaletteFormNav(props) {
   const classes = styles();
   const { open, handleDrawerOpen, savePalette, palettes } = props;
-  const [formShowing, setFormShowing] = useState(false);
-  const handleFormShowing = () => setFormShowing(true);
+  const [showForm, setShowForm] = useState(false);
+  const handleShowForm = () => setShowForm(true);
+  const handleHideForm = () => setShowForm(false);
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -95,15 +96,19 @@ function PaletteFormNav(props) {
           <Button
             variant='contained'
             color='primary'
-            onClick={handleFormShowing}
+            onClick={handleShowForm}
             className={classes.button}
           >
             Save
           </Button>
         </div>
       </AppBar>
-      {formShowing && (
-        <PaletteMetaForm savePalette={savePalette} palettes={palettes} />
+      {showForm && (
+        <PaletteMetaForm
+          savePalette={savePalette}
+          palettes={palettes}
+          handleHideForm={handleHideForm}
+        />
       )}
     </div>
   );
