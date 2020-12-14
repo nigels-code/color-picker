@@ -169,7 +169,7 @@ function NewPaletteForm(props) {
             </Button>
           </div>
           <ColorPickerForm
-            classes={classes}
+            // classes={classes}
             paletteIsFull={paletteIsFull}
             setColors={setColors}
             colors={colors}

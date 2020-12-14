@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
 import { makeStyles } from "@material-ui/core/styles";
@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import MenuIcon from "@material-ui/icons/Menu";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import PaletteMetaForm from "./PaletteMetaForm";
 
 const drawerWidth = 400;
 
@@ -42,19 +42,10 @@ const styles = makeStyles((theme) => ({
 }));
 
 function PaletteFormNav(props) {
-  const [newPaletteName, setNewPaletteName] = useState("");
   const classes = styles();
-  const handleNewPaletteName = (evt) => {
-    setNewPaletteName(evt.target.value);
-  };
+
   const { open, handleDrawerOpen, savePalette, palettes } = props;
-  useEffect(() => {
-    ValidatorForm.addValidationRule("isPaletteNameUnique", (value) =>
-      palettes.every(
-        ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
-      )
-    );
-  });
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -80,19 +71,7 @@ function PaletteFormNav(props) {
           </Typography>
         </Toolbar>
         <div className={classes.navBtns}>
-          <ValidatorForm onSubmit={() => savePalette(newPaletteName)}>
-            <TextValidator
-              label='Palette Name'
-              value={newPaletteName}
-              name='paletteName'
-              onChange={handleNewPaletteName}
-              validators={["required", "isPaletteNameUnique"]}
-              errorMessages={["Enter Palette Name", "Name already used"]}
-            />
-            <Button variant='contained' color='primary' type='submit'>
-              Save Palette
-            </Button>
-          </ValidatorForm>
+          <PaletteMetaForm savePalette={savePalette} palettes={palettes} />
           <Link to='/'>
             <Button variant='contained' color='secondary'>
               Go Back

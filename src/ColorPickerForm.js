@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
 import { withStyles } from "@material-ui/styles";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { ChromePicker } from "react-color";
 
-const styles = {
+const styles = makeStyles((theme) => ({
   picker: {
     width: "100% !important",
     marginTop: "2rem"
@@ -19,11 +20,11 @@ const styles = {
     width: "100%",
     height: "70px"
   }
-};
+}));
 
 function ColorPickerForm(props) {
   const {
-    classes,
+    // classes,
     paletteIsFull,
     setColors,
     colors,
@@ -46,6 +47,7 @@ function ColorPickerForm(props) {
   const handleNewColorName = (evt) => {
     setNewColorName(evt.target.value);
   };
+  const classes = styles();
   useEffect(() => {
     ValidatorForm.addValidationRule("isColorNameUnique", (value) =>
       colors.every(({ name }) => name.toLowerCase() !== value.toLowerCase())
