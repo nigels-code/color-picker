@@ -103,12 +103,9 @@ function NewPaletteForm(props) {
     setCurrentColor(rndColor.color);
     setColors([...colors, rndColor]);
   };
-  const savePalette = (newPaletteName) => {
-    const newPalette = {
-      paletteName: newPaletteName,
-      id: newPaletteName.toLowerCase().replace(/ /g, "-"),
-      colors: colors
-    };
+  const savePalette = (newPalette) => {
+    newPalette.id = newPalette.paletteName.toLowerCase().replace(/ /g, "-");
+    newPalette.colors = colors;
     props.savePalette(newPalette);
     props.history.push("/");
   };
