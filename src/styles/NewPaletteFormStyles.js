@@ -1,7 +1,8 @@
-// import { DRAWER_WIDTH } from "../constants";
-const drawerWidth = 120;
+import { makeStyles } from "@material-ui/core/styles";
+import { DRAWER_WIDTH } from "../constants";
 
-const styles = (theme) => ({
+const drawerWidth = DRAWER_WIDTH;
+const styles = makeStyles((theme) => ({
   root: {
     display: "flex"
   },
@@ -54,6 +55,6 @@ const styles = (theme) => ({
   button: {
     width: "50%"
   }
-});
+}));
 
 export default styles;
