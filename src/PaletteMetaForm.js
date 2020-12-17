@@ -17,6 +17,7 @@ function PaletteMetaForm(props) {
   const showEmojiPicker = () => setStage("emoji");
   const saveEmojiPalette = (emoji) => {
     savePalette({ paletteName: newPaletteName, emoji: emoji.native });
+    setStage("");
   };
   useEffect(() => {
     ValidatorForm.addValidationRule("isPaletteNameUnique", (value) =>
