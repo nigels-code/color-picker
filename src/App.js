@@ -23,7 +23,9 @@ class App extends Component {
   }
   deletePalette(id) {
     this.setState(
-      (st) => ({ palettes: st.palettes.filter((palette) => palette.id != id) }),
+      (st) => ({
+        palettes: st.palettes.filter((palette) => palette.id !== id)
+      }),
       this.syncLocalStorage
     );
   }
