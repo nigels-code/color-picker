@@ -3,6 +3,7 @@ import clsx from "clsx";
 import { withStyles } from "@material-ui/styles";
 import PaletteFormNav from "./PaletteFormNav";
 import ColorPickerForm from "./ColorPickerForm";
+import seedColors from "./seedColors";
 import Drawer from "@material-ui/core/Drawer";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
@@ -18,6 +19,9 @@ function NewPaletteForm(props) {
     maxColors: 20
   };
   const { palettes } = props;
+  if (palettes.length === 0) {
+    palettes[0] = seedColors[0];
+  }
   const classes = styles();
   const [open, setOpen] = useState(false);
   const [currentColor, setCurrentColor] = useState("teal");
@@ -106,7 +110,6 @@ function NewPaletteForm(props) {
             </Button>
           </div>
           <ColorPickerForm
-            // classes={classes}
             paletteIsFull={paletteIsFull}
             setColors={setColors}
             colors={colors}

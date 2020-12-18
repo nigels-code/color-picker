@@ -16,6 +16,7 @@ const styles = {
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "center"
+    // fontSize: "1.6em"
   },
   container: {
     width: "50%",
@@ -33,6 +34,7 @@ const styles = {
   nav: {
     display: "flex",
     width: "100%",
+    // fontSize: "0.8em",
     justifyContent: "space-between",
     alignItems: "center",
     color: "white",
