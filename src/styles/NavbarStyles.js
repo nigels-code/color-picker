@@ -50,7 +50,7 @@ const styles = {
       height: "13px",
       marginTop: "-3px"
     },
-    [sizes.down("md")]: {
+    [sizes.down("sm")]: {
       width: "150px"
     }
   }
