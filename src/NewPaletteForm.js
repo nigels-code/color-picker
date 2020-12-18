@@ -19,13 +19,10 @@ function NewPaletteForm(props) {
     maxColors: 20
   };
   const { palettes } = props;
-  if (palettes.length === 0) {
-    palettes[0] = seedColors[0];
-  }
   const classes = styles();
   const [open, setOpen] = useState(false);
   const [currentColor, setCurrentColor] = useState("teal");
-  const [colors, setColors] = useState(palettes[0].colors);
+  const [colors, setColors] = useState(seedColors[0].colors);
   const paletteIsFull = colors.length >= defaultProps.maxColors;
   const handleDrawerOpen = () => {
     setOpen(true);
