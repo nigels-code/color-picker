@@ -1,16 +1,12 @@
 # Color Picker
 
-- I wrote this while following Colt Steele's "Modern React Bootcamp" course.
+I wrote this while following Colt Steele's "Modern React Bootcamp" course.
 
-- A clone of websites like [Flat UI Colors](https://flatuicolors.com/) and [Material UI Colors](http://materialuicolors.co/?utm_source=launchers).
+A clone of websites like [Flat UI Colors](https://flatuicolors.com/) and [Material UI Colors](http://materialuicolors.co/?utm_source=launchers).
+
+In the project directory run `npm install` to install the dependencies into the `node_modules` folder.
 
 ## Available Scripts
-
-In the project directory, you can run:
-
-### `npm install`
-
-Installs the dependencies for the app to the `node_modules` folder.
 
 ### `npm start`
 
