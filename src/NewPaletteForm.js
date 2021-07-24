@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import clsx from "clsx";
-import { withStyles } from "@material-ui/styles";
-import PaletteFormNav from "./PaletteFormNav";
-import ColorPickerForm from "./ColorPickerForm";
-import seedColors from "./seedColors";
-import Drawer from "@material-ui/core/Drawer";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
-import Button from "@material-ui/core/Button";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import DraggableColorList from "./DraggableColorList";
-import arrayMove from "array-move";
-import styles from "./styles/NewPaletteFormStyles";
+import React, { useState } from 'react';
+import clsx from 'clsx';
+import { withStyles } from '@material-ui/styles';
+import PaletteFormNav from './PaletteFormNav';
+import ColorPickerForm from './ColorPickerForm';
+import seedColors from './seedColors';
+import Drawer from '@material-ui/core/Drawer';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import DraggableColorList from './DraggableColorList';
+import arrayMove from 'array-move';
+import styles from './styles/NewPaletteFormStyles';
 
 function NewPaletteForm(props) {
   const defaultProps = {
@@ -21,7 +21,7 @@ function NewPaletteForm(props) {
   const { palettes } = props;
   const classes = styles();
   const [open, setOpen] = useState(false);
-  const [currentColor, setCurrentColor] = useState("teal");
+  const [currentColor, setCurrentColor] = useState('teal');
   const [colors, setColors] = useState(seedColors[0].colors);
   const paletteIsFull = colors.length >= defaultProps.maxColors;
   const handleDrawerOpen = () => {
@@ -45,10 +45,10 @@ function NewPaletteForm(props) {
     setColors([...colors, rndColor]);
   };
   const savePalette = (newPalette) => {
-    newPalette.id = newPalette.paletteName.toLowerCase().replace(/ /g, "-");
+    newPalette.id = newPalette.paletteName.toLowerCase().replace(/ /g, '-');
     newPalette.colors = colors;
     props.savePalette(newPalette);
-    props.history.push("/");
+    props.history.push('/');
   };
   const removeColor = (colorName) => {
     setColors(colors.filter((color) => color.name !== colorName));
@@ -70,8 +70,8 @@ function NewPaletteForm(props) {
       />
       <Drawer
         className={classes.drawer}
-        variant='persistent'
-        anchor='left'
+        variant="persistent"
+        anchor="left"
         open={open}
         classes={{
           paper: classes.drawerPaper
@@ -84,22 +84,22 @@ function NewPaletteForm(props) {
         </div>
         <Divider />
         <div className={classes.container}>
-          <Typography variant='h4' gutterBottom>
+          <Typography variant="h4" gutterBottom>
             Design Your Palette
           </Typography>
           <div className={classes.buttons}>
             <Button
               className={classes.button}
-              variant='contained'
-              color='secondary'
+              variant="contained"
+              color="secondary"
               onClick={clearColors}
             >
               Clear Palette
             </Button>
             <Button
               className={classes.button}
-              variant='contained'
-              color='primary'
+              variant="contained"
+              color="primary"
               onClick={addRandomColor}
               disabled={paletteIsFull}
             >
@@ -125,11 +125,12 @@ function NewPaletteForm(props) {
         <DraggableColorList
           colors={colors}
           removeColor={removeColor}
-          axis='xy'
+          axis="xy"
           onSortEnd={onSortEnd}
         />
       </main>
     </div>
   );
 }
-export default withStyles(styles, { withTheme: true })(NewPaletteForm);
+export default NewPaletteForm;
+// export default withStyles(styles, { withTheme: true })(NewPaletteForm);
