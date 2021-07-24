@@ -4,10 +4,10 @@ I wrote this while following Colt Steele's "Modern React Bootcamp" course.
 
 A clone of websites like [Flat UI Colors](https://flatuicolors.com/) and [Material UI Colors](http://materialuicolors.co/?utm_source=launchers).
 
-Technologies used: React, Javascript, HTML, CSS
+Technologies used: React, Javascript, HTML, CSS.
 
 I have set up a CI/CD pipeline between Github and Netlify.  
-Open <https://colorpickerxx.netlify.app/> to see a production version of this project.
+Open <https://colorpickerxx.netlify.app/> to see this project in production.
 
 ## Installation
 
