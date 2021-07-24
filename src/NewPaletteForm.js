@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/styles';
+// import { withStyles } from '@material-ui/styles';
 import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
 import seedColors from './seedColors';
