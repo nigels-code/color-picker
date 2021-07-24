@@ -7,7 +7,7 @@ A clone of websites like [Flat UI Colors](https://flatuicolors.com/) and [Materi
 Technologies used: React, Javascript, HTML, CSS
 
 I have set up a CI/CD pipeline between Github and Netlify.  
-Open <https://reactcolorsxx.netlify.app/> to see a production version of this project.
+Open <https://colorpickerxx.netlify.app/> to see a production version of this project.
 
 ## Installation
 
